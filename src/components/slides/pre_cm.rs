@@ -4,7 +4,7 @@ use leptos::*;
 pub fn PreCmSlide() -> impl IntoView {
     view! {
         <div class="slide what-iac-slide">
-            <h2 class="what-iac-main-title">"Before Anyone Had a Plan"</h2>
+            <h2 class="what-iac-main-title">"Before Anyone Wrote Anything Down"</h2>
 
             // ── Era banner ────────────────────────────────────────────────
             <div class="what-era-bar">
@@ -12,7 +12,7 @@ pub fn PreCmSlide() -> impl IntoView {
                 <span class="what-era-sep">"|"</span>
                 <span class="what-era-text">"Mainframes and early networks"</span>
                 <span class="what-era-sep">"|"</span>
-                <span class="what-era-text">"manual, tribal, fragile"</span>
+                <span class="what-era-text">"manual, undocumented, one resignation away from disaster"</span>
             </div>
 
             // ── Diagram ───────────────────────────────────────────────────
@@ -30,7 +30,7 @@ pub fn PreCmSlide() -> impl IntoView {
                             "Ops Engineer"
                         </text>
                         <text x="230" y="52" text-anchor="middle" class="diag-box-sub" fill="#6b7cb8">
-                            "the steps live in his head"
+                            "entire config lives in his head"
                         </text>
 
                         // Arrow down
@@ -46,7 +46,7 @@ pub fn PreCmSlide() -> impl IntoView {
                             "Server A"
                         </text>
                         <text x="95" y="133" text-anchor="middle" class="diag-box-sub" fill="#8898b8">
-                            "manually configured"
+                            "configured manually"
                         </text>
 
                         // Server 2
@@ -56,7 +56,7 @@ pub fn PreCmSlide() -> impl IntoView {
                             "Server B"
                         </text>
                         <text x="230" y="133" text-anchor="middle" class="diag-box-sub" fill="#8898b8">
-                            "configured differently"
+                            "also manual, also different"
                         </text>
 
                         // Server 3
@@ -66,7 +66,7 @@ pub fn PreCmSlide() -> impl IntoView {
                             "Server C"
                         </text>
                         <text x="365" y="133" text-anchor="middle" class="diag-box-sub" fill="#8898b8">
-                            "configured by whoever left"
+                            "configured by whoever quit"
                         </text>
 
                         // Fan lines from arrow to servers
@@ -75,7 +75,7 @@ pub fn PreCmSlide() -> impl IntoView {
 
                         // Snowflake label
                         <text x="230" y="162" text-anchor="middle" class="diag-box-sub" fill="#fc8181">
-                            "Every server is unique. None are documented."
+                            "Every server is different. None of this is written down."
                         </text>
 
                         // Divider
@@ -86,16 +86,16 @@ pub fn PreCmSlide() -> impl IntoView {
                         <rect x="30" y="188" width="400" height="84" rx="8"
                               fill="#1a0e0e" stroke="#e74c3c" stroke-width="1"/>
                         <text x="230" y="207" text-anchor="middle" class="diag-box-title" fill="#fc8181">
-                            "The Costs"
+                            "What Happens Next"
                         </text>
                         <text x="230" y="226" text-anchor="middle" class="diag-box-sub" fill="#a0aec0">
-                            "New environment? Clear your calendar for a week."
+                            "New environment takes a week. If the right person is still employed."
                         </text>
                         <text x="230" y="244" text-anchor="middle" class="diag-box-sub" fill="#a0aec0">
-                            "Prod and test drift apart. You find out at 2am."
+                            "Prod and test quietly diverge. You find out at 3am on a Friday."
                         </text>
                         <text x="230" y="262" text-anchor="middle" class="diag-box-sub" fill="#a0aec0">
-                            "\"Works on my box\" is the only debugging plan"
+                            "\"Works on my machine\" is considered a complete answer"
                         </text>
 
                         // Divider
@@ -109,10 +109,10 @@ pub fn PreCmSlide() -> impl IntoView {
                             "The Wiki"
                         </text>
                         <text x="125" y="332" text-anchor="middle" class="diag-box-sub" fill="#6b7cb8">
-                            "setup instructions (outdated)"
+                            "setup guide (last updated 2014)"
                         </text>
                         <text x="125" y="350" text-anchor="middle" class="diag-box-sub" fill="#fc8181">
-                            "wrong the moment it's published"
+                            "wrong before anyone reads it"
                         </text>
 
                         // No version control
@@ -125,7 +125,7 @@ pub fn PreCmSlide() -> impl IntoView {
                             "no rollback"
                         </text>
                         <text x="335" y="350" text-anchor="middle" class="diag-box-sub" fill="#fc8181">
-                            "no history, no blame"
+                            "no history, no accountability"
                         </text>
                     </svg>
                 </div>
