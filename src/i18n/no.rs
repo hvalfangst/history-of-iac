@@ -1,0 +1,207 @@
+use std::collections::HashMap;
+use std::sync::OnceLock;
+
+static TRANSLATIONS: OnceLock<HashMap<&'static str, &'static str>> = OnceLock::new();
+
+pub fn get() -> &'static HashMap<&'static str, &'static str> {
+    TRANSLATIONS.get_or_init(|| {
+        [
+            // ── Navigation ──────────────────────────────────────────────────────
+            ("nav.prev", "← Previous"),
+            ("nav.next", "Next →"),
+
+            // ── Language toggle ──────────────────────────────────────────────────
+            ("lang.en", "EN"),
+            ("lang.no", "NO"),
+
+            // ── Title slide ──────────────────────────────────────────────────────
+            ("title.heading",  "The History of Infrastructure as Code"),
+            ("title.subtitle", "CFEngine (1993) to Bicep (2020)"),
+            ("title.start",    "Start →"),
+            ("title.coverage", "8 tools · 30+ years · 2 timelines"),
+
+            // ── Timeline slide ───────────────────────────────────────────────────
+            ("timeline.title",           "IaC & Virtualization Timeline"),
+            ("timeline.iac.label",       "Tools"),
+            ("timeline.virt.label",      "Virtualization Technologies"),
+            ("timeline.category.config", "Configuration Management"),
+            ("timeline.category.cloud",  "Cloud IaC"),
+            ("timeline.corr.pre2013",    "Before automation: SSH in, run commands, hope nothing breaks"),
+            ("timeline.corr.docker",     "Docker: config moves into the Dockerfile"),
+            ("timeline.corr.k8s",        "Kubernetes: workload config moves into manifests"),
+            ("timeline.hint",            "Click a tool to jump to its slide"),
+
+            // ── Common slide labels ───────────────────────────────────────────────
+            ("slide.key_aspects",        "Key Aspects"),
+            ("slide.flow_diagram",       "How It Works"),
+            ("slide.code_sample",        "Code Sample"),
+            ("slide.config_management",  "Configuration Management"),
+            ("slide.cloud_provisioning", "Cloud Provisioning"),
+            ("slide.created_by",         "Created by"),
+
+            // ── CFEngine ─────────────────────────────────────────────────────────
+            ("cfengine.title",    "CFEngine"),
+            ("cfengine.subtitle", "The world's first configuration management tool"),
+            ("cfengine.creator",  "Mark Burgess · University of Oslo"),
+            ("cfengine.aspect.1", "World's first CM tool"),
+            ("cfengine.aspect.2", "Mark Burgess, UiO 1993 🇳🇴"),
+            ("cfengine.aspect.3", "Promise Theory-based policy language"),
+            ("cfengine.aspect.4", "Pull model — agents check in every 5 min"),
+            ("cfengine.aspect.5", "Continuous convergence"),
+            ("cfengine.aspect.6", "Scales to tens of thousands of hosts"),
+            ("cfengine.aspect.7", "CFEngine 3 — open source + enterprise"),
+            ("cfengine.diagram.title", "Agent Pull Model"),
+            ("cfengine.code.caption",  "CFEngine 3 — keeping a file in desired state"),
+
+            // ── Puppet ────────────────────────────────────────────────────────────
+            ("puppet.title",    "Puppet"),
+            ("puppet.subtitle", "Pull-based config management with its own DSL"),
+            ("puppet.creator",  "Luke Kanies · Puppet Labs (2005)"),
+            ("puppet.aspect.1", "Custom DSL (.pp manifests)"),
+            ("puppet.aspect.2", "Agent/master architecture"),
+            ("puppet.aspect.3", "Resource Abstraction Layer — OS-agnostic"),
+            ("puppet.aspect.4", "Idempotent by design"),
+            ("puppet.aspect.5", "Hiera for hierarchical config data"),
+            ("puppet.aspect.6", "Puppet Forge — thousands of modules"),
+            ("puppet.diagram.title", "Master / Agent Catalog Flow"),
+            ("puppet.code.caption",  "Puppet manifest: nginx package and service"),
+
+            // ── Chef ──────────────────────────────────────────────────────────────
+            ("chef.title",    "Chef"),
+            ("chef.subtitle", "Infrastructure automation with a Ruby DSL"),
+            ("chef.creator",  "Adam Jacob · Opscode / Progress Chef (2009)"),
+            ("chef.aspect.1", "Ruby DSL — cookbooks and recipes"),
+            ("chef.aspect.2", "Workstation → Chef Server → chef-client"),
+            ("chef.aspect.3", "Test Kitchen for local testing across platforms"),
+            ("chef.aspect.4", "ChefSpec (unit tests) + InSpec (compliance)"),
+            ("chef.aspect.5", "Run-lists define what runs on each node"),
+            ("chef.aspect.6", "Chef Supermarket — community cookbooks"),
+            ("chef.diagram.title", "Cookbook Run Lifecycle"),
+            ("chef.code.caption",  "Chef recipe: install and start Apache"),
+
+            // ── Ansible ───────────────────────────────────────────────────────────
+            ("ansible.title",    "Ansible"),
+            ("ansible.subtitle", "Agentless automation over SSH"),
+            ("ansible.creator",  "Michael DeHaan · acquired by Red Hat (2015)"),
+            ("ansible.aspect.1", "No agent — SSH and Python on the target is enough"),
+            ("ansible.aspect.2", "Push model — runs from your machine or CI"),
+            ("ansible.aspect.3", "YAML playbooks"),
+            ("ansible.aspect.4", "3,000+ built-in modules"),
+            ("ansible.aspect.5", "Inventory file maps hosts to roles"),
+            ("ansible.aspect.6", "Ansible Galaxy — shareable roles"),
+            ("ansible.diagram.title", "Agentless SSH Push"),
+            ("ansible.code.caption",  "Ansible playbook: install and start nginx"),
+
+            // ── CloudFormation ────────────────────────────────────────────────────
+            ("cf.title",    "AWS CloudFormation"),
+            ("cf.subtitle", "AWS-native IaC since 2011"),
+            ("cf.creator",  "Amazon Web Services · 2011"),
+            ("cf.aspect.1", "AWS-native, no external tooling needed"),
+            ("cf.aspect.2", "Resources grouped into named Stacks"),
+            ("cf.aspect.3", "Change Sets — preview before applying"),
+            ("cf.aspect.4", "Stack operations are atomic"),
+            ("cf.aspect.5", "Covers the full AWS service catalog"),
+            ("cf.aspect.6", "No state file — AWS tracks it internally"),
+            ("cf.diagram.title", "Stack Lifecycle"),
+            ("cf.code.caption",  "CloudFormation: S3 bucket with versioning"),
+
+            // ── ARM Templates ─────────────────────────────────────────────────────
+            ("arm.title",    "Azure ARM Templates"),
+            ("arm.subtitle", "Declarative infrastructure for Azure"),
+            ("arm.creator",  "Microsoft Azure · 2014"),
+            ("arm.aspect.1", "ARM is Azure's control plane"),
+            ("arm.aspect.2", "Pure JSON, verbose by design"),
+            ("arm.aspect.3", "Incremental or Complete deployment modes"),
+            ("arm.aspect.4", "Linked templates for modularity"),
+            ("arm.aspect.5", "Idempotent via HTTP PUT"),
+            ("arm.aspect.6", "Direct predecessor to Bicep"),
+            ("arm.diagram.title", "ARM Deployment Flow"),
+            ("arm.code.caption",  "ARM template: Storage Account with a parameterized SKU"),
+
+            // ── Terraform ─────────────────────────────────────────────────────────
+            ("terraform.title",    "Terraform"),
+            ("terraform.subtitle", "Multi-cloud Infrastructure as Code"),
+            ("terraform.creator",  "Mitchell Hashimoto · HashiCorp (2014)"),
+            ("terraform.aspect.1", "HCL — concise and easy to diff"),
+            ("terraform.aspect.2", "AWS, Azure, GCP + 3,000 providers"),
+            ("terraform.aspect.3", "init → plan → apply"),
+            ("terraform.aspect.4", "State file tracks resource IDs"),
+            ("terraform.aspect.5", "Remote backends with team locking"),
+            ("terraform.aspect.6", "Modules via the Terraform Registry"),
+            ("terraform.diagram.title", "Plan / Apply Cycle"),
+            ("terraform.code.caption",  "Terraform: Azure Resource Group and Storage Account"),
+
+            // ── Bicep ─────────────────────────────────────────────────────────────
+            ("bicep.title",    "Bicep"),
+            ("bicep.subtitle", "Azure-native IaC that compiles to ARM JSON"),
+            ("bicep.creator",  "Microsoft Azure · 2020"),
+            ("bicep.aspect.1", "Azure-native, built for ARM"),
+            ("bicep.aspect.2", "No state file"),
+            ("bicep.aspect.3", "Cleaner syntax than raw ARM JSON, with type checking"),
+            ("bicep.aspect.4", "Modules for splitting large deployments"),
+            ("bicep.aspect.5", "what-if runs server-side against ARM"),
+            ("bicep.aspect.6", "Microsoft's recommended way to write ARM templates"),
+            ("bicep.diagram.title", "Bicep Build & Deploy"),
+            ("bicep.code.caption",  "Bicep: Storage Account with parameter decorators"),
+
+            // ── Terraform vs Bicep ────────────────────────────────────────────────
+            ("comparison.title",           "Terraform vs Bicep"),
+            ("comparison.subtitle",        "Stateful multi-cloud vs stateless Azure-native"),
+            ("comparison.terraform.badge", "Stateful · Multi-cloud"),
+            ("comparison.bicep.badge",     "Stateless · Azure-native"),
+            ("comparison.pros",            "Pros"),
+            ("comparison.cons",            "Cons"),
+            ("comparison.dimension.scope",       "Scope"),
+            ("comparison.dimension.state",       "State"),
+            ("comparison.dimension.language",    "Language"),
+            ("comparison.dimension.plan",        "Plan / Preview"),
+            ("comparison.dimension.idempotency", "Idempotency"),
+            ("comparison.dimension.secrets",     "Secrets"),
+            ("comparison.dimension.license",     "License"),
+            ("comparison.dimension.drift",       "Drift detection"),
+            ("comparison.dimension.rollback",    "Rollback"),
+            ("comparison.dimension.community",   "Community"),
+            ("comparison.tf.scope",       "AWS, Azure, GCP, Kubernetes + 3,000+ providers"),
+            ("comparison.tf.state",       ".tfstate file — store remotely, lock it, back it up"),
+            ("comparison.tf.language",    "HCL (HashiCorp Configuration Language)"),
+            ("comparison.tf.plan",        "terraform plan — local diff against state"),
+            ("comparison.tf.idempotency", "plan/apply detects and corrects drift"),
+            ("comparison.tf.secrets",     "Secrets land in state by default; use an encrypted backend"),
+            ("comparison.tf.license",     "BSL 1.1 since Aug 2023; OpenTofu is the MPL fork"),
+            ("comparison.tf.drift",       "terraform plan shows drift between state and live resources"),
+            ("comparison.tf.rollback",    "Re-apply an older version manually"),
+            ("comparison.tf.community",   "Largest IaC community; modules for nearly every resource type"),
+            ("comparison.bi.scope",       "Azure only"),
+            ("comparison.bi.state",       "Stateless — Azure/ARM is the source of truth"),
+            ("comparison.bi.language",    "Bicep DSL (transpiles to ARM JSON)"),
+            ("comparison.bi.plan",        "az deployment ... --what-if — server-side diff via ARM"),
+            ("comparison.bi.idempotency", "HTTP PUT semantics; no drift detection"),
+            ("comparison.bi.secrets",     "Secrets handled by ARM, never written locally"),
+            ("comparison.bi.license",     "MIT"),
+            ("comparison.bi.drift",       "No built-in detection; use Azure Policy"),
+            ("comparison.bi.rollback",    "Complete mode + Azure deployment history"),
+            ("comparison.bi.community",   "Azure-focused; smaller than Terraform but growing"),
+            ("comparison.tf.pros.1", "Works across AWS, Azure, GCP, and 3,000+ providers"),
+            ("comparison.tf.pros.2", "You see the exact diff before running apply"),
+            ("comparison.tf.pros.3", "Remote state, workspace isolation, and team locking"),
+            ("comparison.tf.pros.4", "Large module and provider ecosystem"),
+            ("comparison.tf.cons.1", "State file contains resource IDs and possibly secrets"),
+            ("comparison.tf.cons.2", "Resources can drift without any notification"),
+            ("comparison.tf.cons.3", "BSL license since 2023 — can't use in competing products"),
+            ("comparison.tf.cons.4", "Backend, workspace, and locking all need configuring"),
+            ("comparison.bi.pros.1", "No state file"),
+            ("comparison.bi.pros.2", "Native to Portal, CLI, DevOps, and GitHub Actions"),
+            ("comparison.bi.pros.3", "what-if runs server-side so it matches actual ARM behavior"),
+            ("comparison.bi.pros.4", "MIT, developed in the open by Microsoft"),
+            ("comparison.bi.cons.1", "Azure only"),
+            ("comparison.bi.cons.2", "Drift goes undetected between deployments"),
+            ("comparison.bi.cons.3", "Complete mode deletes resources not in the template"),
+            ("comparison.bi.cons.4", "Smaller community; fewer ready-made modules"),
+            ("comparison.decision.title",     "Which one fits your situation?"),
+            ("comparison.decision.azure",     "Azure only? → Bicep"),
+            ("comparison.decision.multicloud","Multi-cloud or non-Azure? → Terraform"),
+        ]
+        .into_iter()
+        .collect()
+    })
+}

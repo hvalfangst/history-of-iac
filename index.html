@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>History of Infrastructure as Code</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive presentation tracing the history of Infrastructure as Code — from CFEngine (1993) to Bicep (2020)">
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module">
+        import init from './pkg/history_of_iac.js';
+        await init();
+        hljs.highlightAll();
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.slide-tab')) {
+                setTimeout(() => hljs.highlightAll(), 50);
+            }
+        });
+    </script>
+</body>
+</html>
