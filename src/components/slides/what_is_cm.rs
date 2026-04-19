@@ -27,21 +27,21 @@ pub fn WhatIsCmSlide() -> impl IntoView {
                     <ul class="what-card-list">
                         <li>
                             <span class="what-bullet" style="color:#f5a623">"▸"</span>
-                            <span>"Declarative: describe state, not steps"</span>
+                            <span>"Declarative: you describe what you want, not how to get there"</span>
                         </li>
                         <li>
                             <span class="what-bullet" style="color:#f5a623">"▸"</span>
-                            <span>"Idempotent: safe to run many times"</span>
+                            <span>"Idempotent: run it once or a hundred times, same result"</span>
                         </li>
                     </ul>
                     <ul class="what-card-list">
                         <li>
                             <span class="what-bullet" style="color:#f5a623">"▸"</span>
-                            <span>"One policy → hundreds of servers"</span>
+                            <span>"One file, hundreds of servers"</span>
                         </li>
                         <li>
                             <span class="what-bullet" style="color:#f5a623">"▸"</span>
-                            <span>"Version control and code review"</span>
+                            <span>"Reviewed and versioned like real code"</span>
                         </li>
                     </ul>
                 </div>
